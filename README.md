@@ -1,57 +1,17 @@
-# Gromacs Metadata Extractor
+# Gromacs MetaDump Repository
 
-This is the script that extracts the metadata from the molecular dynamics simulations.
+In this repository we present the source code of GROMACS MetaDump.
 
-This code is also deployed at https://gmxmetadump.biodata.ceitec.cz/, where it is possible to obtain metadata after uploading a TPR file without need to install or run local scripts.
+## Tool availability
 
-## Dependencies
+### Web
+Available at https://gmd.ceitec.cz/, where it is possible to obtain metadata after uploading a TPR file without need to install or run local scripts.
 
-- Gromacs software with `dump` utility (gmx dump)
-- Python 3.8 and greater
+### CLI
+See the `cli` folder of this repository.
 
-## Usage
-
-How to use the `Gromacs Metadata Extractor` software.
-
-### Basic usage from CLI
-
-```bash
-pytohn3 extract.py --tpr_file <path to TPR file>
-```
-
-#### Available Arguments
-
-| Argument      | Description                              | Example                          |
-|---------------|------------------------------------------|----------------------------------|
-|   --tpr_file  |   Path to the TPR file                   |  --tpr_file <path_to_TPR_file>   |
-|   --cpt_file  |   Path to the CPT file                   |  Unnused at the moment           |
-|   --gro_file  |   Path to the GRO file                   |  Unnused at the moment           |
-|   --format    |   Format of output metadata <json/yaml>  |  --format json                   |
-|   --debug     |    Print debug information <true/false>  |  --debug true                    |
-
-### As Python module
-Use for automatization from own Python scripts.
-
-```python
-from GromacsMetadataExtractor import MetadataExtractor
-
-extractor_object = MetadataExtractor(tpr_file[, gro_file[, cpt_file[, debug]]])
-metadata = extractor_object.run().export()
-# Print `metadata` dictionary
-print(metadata)
-```
-
-#### Methods
-
-| Method                       | Description                         |
-|------------------------------|-------------------------------------|
-|   run()                      |   Runs the metadata parser          |
-|   print(format=<json/yaml>)  |   Prints the metadata to STDOUT     |
-|   export()                   |   Returns dictionary with metadata  |
-
-#### Example of advanced usage
-
-See `paralel_run.py`
+### Calling API
+See the manual.
 
 # Authors
 Adrián Rošinec - adrian@ics.muni.cz    
