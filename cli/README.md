@@ -6,7 +6,7 @@ This functionality is also available as web application at https://gmd.ceitec.cz
 
 ## Dependencies
 
-- Gromacs software with `dump` utility (gmx dump)
+- Gromacs software with extended `dump` utility (gmx dump) [which you may get here.](https://github.com/rrandiak/gromacs)
 - Python 3.8 and greater
 
 ## Usage

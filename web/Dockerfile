@@ -1,0 +1,13 @@
+
+# # Build stage
+# FROM node AS builder
+# WORKDIR /usr/src/app
+# COPY . .
+# RUN npm install --force
+# RUN npm run build
+
+FROM nginxinc/nginx-unprivileged
+# COPY --from=builder /usr/src/app/build /var/www/app
+COPY ./build /var/www/app
+COPY *.conf /etc/nginx/conf.d
+EXPOSE 8081
