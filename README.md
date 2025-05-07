@@ -21,5 +21,5 @@ Ondřej Schindler - ondrej.schindler@mail.muni.cz
 
 BSD 3-Clause License, see LICESNE file
 
-Copyright (c) 2023, CEITEC and CERIT-SC, Masaryk University.
+Copyright (c) 2025, CEITEC and CERIT-SC, Masaryk University.
 All rights reserved.
