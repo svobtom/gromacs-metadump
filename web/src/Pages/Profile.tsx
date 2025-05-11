@@ -52,7 +52,9 @@ const Profile: React.FC = () => {
             <Stack direction={"column"} spacing={2}>
                 <Box>
                     <Typography variant="h1">User Profile</Typography>
-                    <Stack direction="row" spacing={2}>
+                    <Typography variant="body1">Edit your profile information</Typography>
+                    <Typography variant="body1">This information will be used to generate the metadata</Typography>
+                    <Stack direction="row" spacing={2} sx={{mt: 2}}>
                         <TextField
                             label="Name"
                             name="name"

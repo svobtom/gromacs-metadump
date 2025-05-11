@@ -2,9 +2,8 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "GROMACS Simulation Schema",
   "description": "This schema defines the structure of metadata and parameters used in a GROMACS simulation environment.",
-  "type": "object",
   "properties": {
-    "dataset_metadata": {
+    "administrative": {
       "properties": {
         "title": {
           "title": "Title of the dataset",
@@ -28,11 +27,28 @@
           "description": "DOI or other identifier",
           "title": "Identifier",
           "type": "string"
+        },
+        "software_information": {
+          "type": "object",
+          "title": "Software Information",
+          "description": "Details of the software environment used to perform the simulation.",
+          "properties": {
+            "software": {
+              "type": "string",
+              "title": "Software Name",
+              "description": "Name of the molecular dynamics package (e.g., 'GROMACS')."
+            },
+            "version": {
+              "type": "string",
+              "title": "Software Version",
+              "description": "Version of the software used (e.g., '2023.1')."
+            }
+          }
         }
       },
       "type": "object"
     },
-    "simulated_object_metadata": {
+    "simulated_object": {
       "properties": {
         "protein_id": {
           "title": "Protein Identification",
@@ -104,7 +120,7 @@
       },
       "type": "object"
     },
-    "simulation_level_data": {
+    "simulation": {
       "type": "object",
       "title": "Simulation Level Data",
       "description": "Contains GROMACS simulation parameters (mdp fields), including force fields and input records.",
@@ -1442,7 +1458,7 @@
         }
       }
     },
-    "system_level_data": {
+    "system": {
       "type": "object",
       "title": "System Level Data",
       "description": "Describes the overall system setup, such as water model and box dimensions.",
@@ -1461,23 +1477,6 @@
           },
           "minItems": 3,
           "maxItems": 3
-        }
-      }
-    },
-    "software_information": {
-      "type": "object",
-      "title": "Software Information",
-      "description": "Details of the software environment used to perform the simulation.",
-      "properties": {
-        "software": {
-          "type": "string",
-          "title": "Software Name",
-          "description": "Name of the molecular dynamics package (e.g., 'GROMACS')."
-        },
-        "version": {
-          "type": "string",
-          "title": "Software Version",
-          "description": "Version of the software used (e.g., '2023.1')."
         }
       }
     }

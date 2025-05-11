@@ -62,12 +62,12 @@ const Sessions = () => {
         );
 
     } else {
-        return (
-            <>
-                <Typography variant="h1" sx={{mb: 0}}>Sessions</Typography>
-                <Typography>No recent sessions available. Start a new one by annotating simulation files.</Typography>
-            </>
-        );
+        // return (
+        //     <>
+        //         <Typography variant="h1" sx={{mb: 0}}>Sessions</Typography>
+        //         <Typography>No recent sessions available. Start a new one by annotating simulation files.</Typography>
+        //     </>
+        // );
     }
 }
 

@@ -1,14 +1,10 @@
 import os
 from typing import MutableMapping
-import uuid
 import json
 import subprocess
-from threading import Lock
-from collections import deque
-import time
 import yaml
 import re
-import tarfile, zipfile, shutil, os
+import tarfile, zipfile, os
 import tempfile
 
 METADATA_STRUCTURE = {
@@ -117,7 +113,7 @@ class GromacsMetadataExtractor:
                 version = None
 
             self._put_metadata("simulation", json.loads(result.stdout))
-            self._put_metadata("administrative", {"software": "GROMACS", "version": version})
+            self._put_metadata("administrative.software_information", {"software": "GROMACS", "version": version})
     
         except subprocess.CalledProcessError as e:
             print(f"Error: {e.stderr}")

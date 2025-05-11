@@ -172,7 +172,7 @@ export const MaterialCategorizationLayoutRenderer = (
           variant='scrollable'
         >
           {categories.map((_, idx: number) => (
-            <Tab key={idx} label={tabLabels[idx]} sx={{border: "1px solid transparent", borderRadius: "3px", background: "#F47D20", width: "17%", marginRight: 1}} />
+            <Tab key={idx} label={tabLabels[idx]} sx={{border: "1px solid transparent", borderRadius: "3px", background: "#F47D20", width: "20%", marginRight: 1}} />
           ))}
         </Tabs>
       </AppBar>

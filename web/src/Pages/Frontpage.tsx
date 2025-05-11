@@ -42,7 +42,7 @@ const Frontpage = () => {
         const request_id = await fetch('/api/annotate', { body: data, method: 'POST' })
             .then(response => response.text())
             .then(text => JSON.parse(text))
-            .then(data => data.request_id)
+            .then(data => data.uuid)
             .catch(error => setError(true))
 
         setAnalyzing(false)
@@ -147,70 +147,95 @@ const Frontpage = () => {
                     This tool is designed to help you create FAIR metadata annotations to a biomolecular simulation dataset for publishing it to data repositories and citing the dataset in your paper.
                     Currently, the tool works for Gromacs TPR file as an entry to the editor, as from TPR file we are ale to obtain most of the information. After uploading your TPR and quick analysis of your TPR file, a metadata editor will be displayed where you can validate and edit the metadata and finally download it in JSON or YAML format.
                 </Typography>
-                <Stack direction="row" spacing={2} alignItems={"end"}>
+                <Stack direction="row" spacing={2} alignItems={"center"}>
                     <Typography variant="h1">Annotate Gromacs Files</Typography>
                     <Tooltip title="Manual">
-                        <IconButton href="https://github.com/sb-ncbr/gromacs-metadata-extractor/wiki" size="small" target="_blank">
-                            <Help sx={{fontSize: "2em"}}/>
-                        </IconButton>
-                    </Tooltip>
-                </Stack>
-                
-                <Dropzone setUploadedFiles={setUploadedFiles} setUploaded={setUploaded} />
-                <Button variant="outlined" sx={{width: "33%"}} onClick={() => setCustomMetadataModalState(!customMetadataModalState)} size="small">Add optional metadata</Button>
-                {(uploadedFiles.length > 0 || customMetadataConfirm) && (
-                    <Stack direction="column" spacing={1} justifyItems={"center"} sx={{ p: 2 }}>
-                        <Typography variant="h3">Uploaded files</Typography>
-                        <Table
-                            sx={{ width: "66%" }}
-                            size="small"
-                        >
-                            <TableBody>
-                                {uploadedFiles.map((file, key) => (
-                                    <TableRow key={key}>
-                                        <TableCell sx={{width: "84%"}}>{shortName(file.name)}</TableCell>
-                                        <TableCell sx={{width: "10%"}}>
-                                            <Stack direction={"row"} spacing={2} alignItems={"center"} alignContent={"center"}>
-                                                <CheckCircle sx={{color: 'primary.main'}} />
-                                                {fileSuffix(file.name).toLocaleUpperCase()}
-                                            </Stack>
-                                        </TableCell>
-                                        <TableCell sx={{width: "12%"}}>
-                                            <Stack direction={"row"} spacing={2} alignItems={"center"} alignContent={"center"}>
-                                                <Tooltip title="Remove file" arrow>
-                                                <IconButton onClick={() => clearFile(file)}><RemoveCircle /></IconButton>
-                                                </Tooltip>
-                                                {(file.name === "md.custom-metadata" || file.name === "md.custom-metadata.json") ? 
-                                                <Tooltip title="Edit metadata" arrow><IconButton onClick={() => setCustomMetadataModalState(true)}><Edit/></IconButton></Tooltip> : ""}
-                                            </Stack>
-                                        </TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                            </Table>
-                    </Stack>
-                )}
-                <Stack direction="row" spacing={2} alignItems={"center"}>
-                    <Tooltip title="Annotate your uploaded files" arrow>
-                        <Button variant="contained" 
-                            sx={{width: "33%"}} 
-                            onClick={editFile} 
-                            size="large"
-                            disabled={(!customMetadataConfirm && !uploadedFiles.length) || analyzing} 
-                            endIcon={analyzing ? <Button /> : <></>}
-                            >
-                                Annotate
+                        <Button href="https://github.com/sb-ncbr/gromacs-metadata-extractor/wiki" size="small" variant="outlined" target="_blank">
+                            Manual
                         </Button>
                     </Tooltip>
-                    {error && <Alert severity="error">
-                                There was an error processing your request. Please try again later.
-                              </Alert>}
                 </Stack>
+                <Grid container columnSpacing={{ xs: 0, sm: 0, md: 2, lg: 2 }} sx={{width: "100% !important", mt: "2em !important"}} alignItems="stretch" justifyContent="space-between">
+                    <Grid item xs={12} md={8}>
+                        <Dropzone setUploadedFiles={setUploadedFiles} setUploaded={setUploaded} />
+                        {(uploadedFiles.length > 0 || customMetadataConfirm) && (
+                            <Stack direction="column" spacing={1} justifyItems={"center"} sx={{ p: 2 }}>
+                                <Typography variant="h3">Uploaded files</Typography>
+                                <Table
+                                    sx={{ width: "100%" }}
+                                    size="small"
+                                >
+                                    <TableBody>
+                                        {uploadedFiles.map((file, key) => (
+                                            <TableRow key={key}>
+                                                <TableCell sx={{width: "84%"}}>{shortName(file.name)}</TableCell>
+                                                <TableCell sx={{width: "10%"}}>
+                                                    <Stack direction={"row"} spacing={2} alignItems={"center"} alignContent={"center"}>
+                                                        <CheckCircle sx={{color: 'primary.main'}} />
+                                                        {fileSuffix(file.name).toLocaleUpperCase()}
+                                                    </Stack>
+                                                </TableCell>
+                                                <TableCell sx={{width: "12%"}}>
+                                                    <Stack direction={"row"} spacing={2} alignItems={"center"} alignContent={"center"}>
+                                                        <Tooltip title="Remove file" arrow>
+                                                        <IconButton onClick={() => clearFile(file)}><RemoveCircle /></IconButton>
+                                                        </Tooltip>
+                                                        {(file.name === "md.custom-metadata" || file.name === "md.custom-metadata.json") ? 
+                                                        <Tooltip title="Edit metadata" arrow><IconButton onClick={() => setCustomMetadataModalState(true)}><Edit/></IconButton></Tooltip> : ""}
+                                                    </Stack>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                    </Table>
+                            </Stack>
+                        )}
+                                <Stack direction={{ xs: "column-reverse", md: "row" }} sx={{mt: 2}} spacing={2}>
+                                    <Tooltip 
+                                        title="Annotate your uploaded files" 
+                                        arrow 
+                                        placement="right"
+                                    >
+                                        <Button 
+                                            variant="contained" 
+                                            sx={{ width: "100%" }} 
+                                            onClick={editFile} 
+                                            size="large"
+                                            disabled={(!customMetadataConfirm && !uploadedFiles.length) || analyzing} 
+                                            endIcon={analyzing ? <Button /> : <></>}
+                                        >
+                                            Annotate
+                                        </Button>
+                                    </Tooltip>
+                                    <Tooltip 
+                                        title="Add optional metadata file if not uploaded as .json or .yaml" 
+                                        arrow 
+                                        placement="right"
+                                    >
+                                        <Button 
+                                            variant="outlined" 
+                                            sx={{ padding: "4px 8px" }} 
+                                            onClick={() => setCustomMetadataModalState(!customMetadataModalState)} 
+                                            size="small"
+                                        >
+                                            Add optional metadata
+                                        </Button>
+                                    </Tooltip>
+                                </Stack>
+                                {error && (
+                                    <Alert severity="error" sx={{ mt: 2 }}>
+                                        There was an error processing your request. Please try again later.
+                                    </Alert>
+                                )}
+                    </Grid>
+                    <Grid item xs={12} md={4} justifyContent={"flex-end"} alignItems={"center"}>
+                    </Grid>
+                </Grid>
                 
                 <Sessions />
                 
                 <Typography variant="h1" mb={5}>Examples</Typography>
-                <Grid container justifyContent="center" display="flex" alignItems="stretch">
+                <Grid container justifyContent="center" display="flex" alignItems="stretch" rowSpacing={{xs: 2, sm: 2, md:0}}>
                     <Grid item xs={12} md={4} display={"flex"}>
                         <Example name="Lysozyme in Water" description={<span>Showcase of metadata of simulation system with Lysozyme protein in water box with ions from a <a href="http://www.mdtutorials.com/gmx/lysozyme/">MDTutorials guide</a>.</span>} id="md_tutorial_lysozyme" img="1aki_assembly-1.jpeg" />
                     </Grid>
@@ -229,9 +254,6 @@ const Frontpage = () => {
                 </DialogContent>
                 <Divider />
                 <Box sx={{p: 2}}>
-                    <Stack direction="row" alignItems="" justifyContent={"right"} width={"100%"} spacing={2} sx={{mb: 2}}>
-                        <Button variant="contained" size="small" onClick={() => switchEditor()}>Switch Editor</Button>
-                    </Stack>
                     <Box display={customMetadataEditor === "form" ? "block" : "none"}>
                     <FormsWrapped schema={customMetadataSchema} uischema={customMetadataUISchema} data={customMetadata} setData={setCustomMetadata} setErrors={() => {}} />
                     </Box>
@@ -248,8 +270,12 @@ const Frontpage = () => {
                         <Typography variant="caption">You may store content of the form for later use using this code editor.</Typography>
                     </Box>
                     {profile && (<Typography variant="caption">Your <Link to={"/profile"}>profile</Link> information has been prefilled in the metadata.</Typography>)}
+                    <Typography variant="caption">You can also upload a metadata file in JSON or YAML format. The file will be automatically detected and the metadata will be extracted. <Link to={"https://github.com/sb-ncbr/gromacs-metadump/wiki/Manual#optional-metadata"} target="_blank">See the manual for more details.</Link></Typography>
                 </Box>
                 <DialogActions>
+                    <Button variant="outlined" onClick={switchEditor}>
+                            Switch to {customMetadataEditor === "form" ? "Text Editor" : "Form Editor"}
+                    </Button>
                     <Button variant="outlined" onClick={() => {setCustomMetadataModalState(false)}}>Cancel</Button>
                     <Button variant="contained" disabled={Object.keys(customMetadata).length === 0} onClick={() => setCustomAnnotations(true)}>Add annotations</Button>
                 </DialogActions>

@@ -1,18 +1,19 @@
 import { ArrowDropDown, DataObject } from "@mui/icons-material";
 import { Button, Menu, MenuItem, Checkbox, FormControlLabel, Box, ButtonGroup, Typography, Icon, Stack, Divider } from "@mui/material";
 import { useState } from "react";
-import { AnnotationResultsResponse } from "../Pages/AnnotationResults";
 import { stringify } from "yaml";
 import { IconLabel, iconMap } from "./FormsWrapper";
+import { AnnotationResultsStatusResponse } from "../Pages/AnnotationResults";
 
 interface DownloadMetadataActionsProps {
-    data: AnnotationResultsResponse;
+    data: Object;
+    stateData: AnnotationResultsStatusResponse;
     mode?: "basic" | "advanced";
 }
 
-const DownloadMetadataActions = ({ data, mode = "basic" }: DownloadMetadataActionsProps): React.ReactElement => {
+const DownloadMetadataActions = ({ data, stateData, mode = "basic" }: DownloadMetadataActionsProps): React.ReactElement => {
     const [anchorElem, setAnchorElem] = useState<null | HTMLElement>(null);
-    const [selectedKeys, setSelectedKeys] = useState<string[]>(Object.keys(data.result));
+    const [selectedKeys, setSelectedKeys] = useState<string[]>(Object.keys(data));
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorElem(event.currentTarget);
@@ -26,7 +27,7 @@ const DownloadMetadataActions = ({ data, mode = "basic" }: DownloadMetadataActio
 
     // Select all keys
     const handleSelectAll = () => {
-        setSelectedKeys(Object.keys(data.result));
+        setSelectedKeys(Object.keys(data));
     };
 
     // Deselect all keys
@@ -35,13 +36,13 @@ const DownloadMetadataActions = ({ data, mode = "basic" }: DownloadMetadataActio
     };
 
     const downloadMetadata = (format: string): void => {
-        const fileName = data.uploaded_files.tpr?.split(".").slice(0, -1).join(".");
+        const fileName = stateData.processed_files.tpr?.split(".").slice(0, -1).join(".");
         const element = document.createElement("a");
 
         // Filter data.result based on selected keys (if in advanced mode)
         const filteredData = mode === "advanced" && selectedKeys.length > 0
-            ? Object.fromEntries(selectedKeys.map((key) => [key, (data.result as { [key: string]: any })[key]]))
-            : data.result;
+            ? Object.fromEntries(selectedKeys.map((key) => [key, (data as { [key: string]: any })[key]]))
+            : data;
 
         let file = new Blob();
         if (format === "yaml") {
@@ -78,7 +79,7 @@ const DownloadMetadataActions = ({ data, mode = "basic" }: DownloadMetadataActio
                                 <Button onClick={handleSelectNone}>Select None</Button>
                             </ButtonGroup>
                         </Stack>
-                    {Object.keys(data.result).map((key) => (
+                    {Object.keys(data).map((key) => (
                         <FormControlLabel
                             key={key}
                             control={

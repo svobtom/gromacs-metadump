@@ -5,8 +5,8 @@ Maintainer: Adrian Rosinec
 Email: adrian@ics.muni.cz
 Date Created: February 13, 2023
 Date Modified: January 1, 2024
-Dependencies: Python 3.8+, Gromacs 2020.4+, GromacsMetadataExtractor 0.1+
-Version: 0.1
+Dependencies: Python 3.8+, Gromacs 2020.4+ (with extension of dump tool), GromacsMetadataExtractor 0.1+
+Version: 1.0
 Python Version: 3.8+
 License: BSD 3-Clause License
 

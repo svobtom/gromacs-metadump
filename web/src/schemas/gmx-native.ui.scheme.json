@@ -3,14 +3,44 @@
     "elements": [
         {
             "type": "Category",
-            "label": "General",
+            "label": "Administrative",
             "elements": [
                 {
-                    "type": "HorizontalLayout",
+                    "type": "VerticalLayout",
                     "elements": [
                         {
-                            "type": "Control",
-                            "scope": "#/properties/dataset_metadata/"
+                            "type": "Group",
+                            "elements": [
+                                {
+                                    "type": "Control",
+                                    "scope": "#/properties/administrative/properties/title"
+                                },
+                                {
+                                    "type": "Control",
+                                    "scope": "#/properties/administrative/properties/creator"
+                                },
+                                {
+                                    "type": "Control",
+                                    "scope": "#/properties/administrative/properties/publishing_institution"
+                                },
+                                {
+                                    "type": "Control",
+                                    "scope": "#/properties/administrative/properties/publication_year"
+                                },
+                                {
+                                    "type": "Control",
+                                    "scope": "#/properties/administrative/properties/identifier"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "VerticalLayout",
+                            "elements": [
+                                {
+                                    "type": "Control",
+                                    "scope": "#/properties/administrative/properties/software_information"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -25,7 +55,7 @@
                     "elements": [
                         {
                             "type": "Control",
-                            "scope": "#/properties/simulated_object_metadata/"
+                            "scope": "#/properties/simulated_object/"
                         }
                     ]
                 }
@@ -40,7 +70,7 @@
                     "elements": [
                         {
                             "type": "Control",
-                            "scope": "#/properties/simulation_level_data/"
+                            "scope": "#/properties/simulation/"
                         }
                     ]
                 }
@@ -55,22 +85,7 @@
                     "elements": [
                         {
                             "type": "Control",
-                            "scope": "#/properties/system_level_data/"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "Category",
-            "label": "Software",
-            "elements": [
-                {
-                    "type": "HorizontalLayout",
-                    "elements": [
-                        {
-                            "type": "Control",
-                            "scope": "#/properties/software_information/"
+                            "scope": "#/properties/system/"
                         }
                     ]
                 }
