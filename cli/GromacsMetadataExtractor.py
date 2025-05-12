@@ -6,6 +6,7 @@ import yaml
 import re
 import tarfile, zipfile, os
 import tempfile
+from copy import deepcopy
 
 METADATA_STRUCTURE = {
     "simulation": {},
@@ -18,7 +19,7 @@ class GromacsMetadataExtractor:
     def __init__(self, format="json", verbose=False, gmx_bin="/opt/gromacs/bin/gmx", **kwargs):
         self.format = format
         self.verbose = verbose
-        self.metadata = METADATA_STRUCTURE
+        self.metadata = deepcopy(METADATA_STRUCTURE)
         self.gmx_bin = gmx_bin
         self.gmx_dump_options = None
         if kwargs:
@@ -61,9 +62,9 @@ class GromacsMetadataExtractor:
         """
         for key, value in source.items():
             if key in target and isinstance(target[key], MutableMapping) and isinstance(value, MutableMapping):
-                self._merge_json(target[key], value)
+                self.merge_json2(target[key], value)
             else:
-                target[key] = value
+                target[key] = deepcopy(value)
     
     def _put_metadata(self, key, value):
         """Store metadata in the appropriate structure."""
@@ -77,7 +78,7 @@ class GromacsMetadataExtractor:
         if final_key in current and isinstance(current[final_key], dict) and isinstance(value, dict):
             self.merge_json2(current[final_key], value)
         else:
-            current[final_key] = value
+            current[final_key] = deepcopy(value)
 
     def extract(self):
         if self.format == "json":

@@ -2,6 +2,8 @@ services:
   redis:
     image: redis:6-alpine
     restart: unless-stopped
+    ports:
+      - "6379:6379"
 
   api:
     build:
@@ -15,7 +17,7 @@ services:
       - CLEANUP_DAYS=30
       - PREFERRED_URL_SCHEME="http"
       - TZ=Europe/Prague
-      - DATABASE_URI=postgresql+psycopg2://postgres:postgres@postgres:5432/gmxmetadump
+      - DATABASE_URI=postgresql://postgres:postgres@postgres:5432/gmxmetadump
     ports:
       - "5000:5000"
     volumes:
@@ -37,7 +39,7 @@ services:
       - CLEANUP_DAYS=30
       - PREFERRED_URL_SCHEME="http"
       - TZ=Europe/Prague
-      - DATABASE_URI=postgresql+psycopg2://postgres:postgres@postgres:5432/gmxmetadump
+      - DATABASE_URI=postgresql://postgres:postgres@postgres:5432/gmxmetadump
     volumes:
       - annotation_data:/app/data
       - database_data:/app/db

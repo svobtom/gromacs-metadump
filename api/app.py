@@ -13,7 +13,7 @@ from celery import Celery
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 
-from cli.GromacsMetadataExtractor import GromacsMetadataExtractor
+from cli.GromacsMetadataExtractor import GromacsMetadataExtractor, METADATA_STRUCTURE
 import secrets
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -136,9 +136,11 @@ def process_annotation(self, job_id, keep_flag):
 
     # 2) init extractor & load existing metadata if any
     extractor = GromacsMetadataExtractor()
+    logger.info(f"[Celery] Initializing extractor for {job_id}, {job.result_metadata}")
     if job.result_metadata:
         extractor.metadata = json.loads(job.result_metadata)
 
+    logger.info(f"[Celery] Initializing extractor 2 for {job_id}, {job.result_metadata}")
     # 3) load processed_files set
     processed = set(json.loads(job.processed_files or "[]"))
 
@@ -174,9 +176,12 @@ def process_annotation(self, job_id, keep_flag):
 
     # 6) final metadata & complete
     final_json = extractor.extract()
+    logger.info(f"[Celery] Final metadata: {json.dumps(final_json, indent=2)}")
     job.result_metadata = final_json
     job.status   = "completed"
     db.session.commit()
+
+    extractor.metadata = METADATA_STRUCTURE
 
     logger.info(f"[Celery] Job {job_id} completed")
 
