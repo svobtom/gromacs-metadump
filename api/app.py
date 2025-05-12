@@ -181,8 +181,6 @@ def process_annotation(self, job_id, keep_flag):
     job.status   = "completed"
     db.session.commit()
 
-    extractor.metadata = METADATA_STRUCTURE
-
     logger.info(f"[Celery] Job {job_id} completed")
 
 # ─── Cleanup Scheduler ───────────────────────────────────────────────────────

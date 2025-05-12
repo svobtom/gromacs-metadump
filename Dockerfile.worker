@@ -53,7 +53,7 @@ COPY --from=gromacs_builder /opt/gromacs /opt/gromacs
 ENV PATH="/opt/gromacs/bin:/opt/venv/bin:${PATH}"
 ENV LD_LIBRARY_PATH="/opt/gromacs/lib:${LD_LIBRARY_PATH}"
 
-RUN chmod +x /opt/gromacs/bin/gmx && chown -R 1000:1000 /app /opt/gromacs /opt/venv
+RUN ln -s ./cli/gmxextract.py /app/gmxextract.py && chmod +x /opt/gromacs/bin/gmx && chown -R 1000:1000 /app /opt/gromacs /opt/venv
 
 USER 1000
 
