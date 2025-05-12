@@ -8,6 +8,6 @@
 
 FROM nginxinc/nginx-unprivileged
 # COPY --from=builder /usr/src/app/build /var/www/app
-COPY ./build /var/www/app
-COPY *.conf /etc/nginx/conf.d
+COPY ./web/build /var/www/app
+COPY ./web/*.conf /etc/nginx/conf.d
 EXPOSE 8081
