@@ -1,24 +1,22 @@
 """
-Description: This script extracts metadata from Gromacs TPR files acording to the schema
-Author: Adrian Rosinec, and Ondrej Sindler
+Description: This script extracts metadata from GROMACS TPR files acording to the schema
+Author: Adrian Rosinec, and Ondrej Schindler
 Maintainer: Adrian Rosinec
 Email: adrian@ics.muni.cz
-Date Created: February 13, 2023
-Date Modified: January 1, 2024
-Dependencies: Python 3.8+, Gromacs 2020.4+, GromacsMetadataExtractor 0.1+
-Version: 0.1
+Dependencies: Python 3.8+, GROMACS 2020.4+, GromacsMetadataExtractor 0.1+
+Version: 1.0
 Python Version: 3.8+
 License: BSD 3-Clause License
 
 Usage:
 
-    $ pytohn3 extract.py --tpr_file <path to TPR file>
+    $ python3 extract.py --tpr_file <path to TPR file>
 
 Arguments:
 
-    --tpr_file: Path to TPR file from Gromacs with metadata. (Obligatory argument)
-    --gro_file: Path to GRO file from Gromacs with metadata. (Unnused argument)
-    --cpt_file: Path to CPT file from Gromacs with metadata. (Unnused argument)
+    --tpr_file: Path to TPR file from GROMACS with metadata. (Obligatory argument)
+    --gro_file: Path to GRO file from GROMACS with metadata. (Unnused argument)
+    --cpt_file: Path to CPT file from GROMACS with metadata. (Unnused argument)
     --format: Print extracted metadata as `json` or `yaml` formats. Default: json
     --debug: If true, debug information is printed as script runs. Default: False
 
@@ -32,14 +30,14 @@ def load_argumets():
         parser = argparse.ArgumentParser()
         parser.add_argument('--tpr_file',
                             type=str,
-                            help='Tpr file from gromacs with metadata. (Obligatory argument)',
+                            help='Tpr file from GROMACS with metadata. (Obligatory argument)',
                             required=True)
         parser.add_argument('--gro_file',
                             type=str,
-                            help='Gro file from gromacs with metadata.')
+                            help='Gro file from GROMACS with metadata.')
         parser.add_argument('--cpt_file',
                             type=str,
-                            help='Cpt file from gromacs with metadata.',
+                            help='Cpt file from GROMACS with metadata.',
                             default=None)
         parser.add_argument('--format',
                             type=str,

@@ -1,26 +1,24 @@
 """
-Description: This script extracts metadata from Gromacs TPR files acording to the schema
-Author: Adrian Rosinec, and Ondrej Sindler
+Description: This script extracts metadata from GROMACS TPR files acording to the schema
+Author: Adrian Rosinec, and Ondrej Schindler
 Maintainer: Adrian Rosinec
 Email: adrian@ics.muni.cz
-Date Created: February 13, 2023
-Date Modified: January 1, 2024
-Dependencies: Python 3.8+, Gromacs 2020.4+ (with extension of dump tool), GromacsMetadataExtractor 0.1+
+Dependencies: Python 3.8+, GROMACS 2020.4+ (with extension of dump tool), GromacsMetadataExtractor 0.1+
 Version: 1.0
 Python Version: 3.8+
 License: BSD 3-Clause License
 
 Usage:
 
-    $ pytohn3 gmxextract.py --tpr <path to TPR file>
+    $ python3 gmxextract.py --tpr <path to TPR file>
 
 Arguments:
 
-    --tpr: Path to TPR file from Gromacs with metadata. (Obligatory argument)
-    --gro: Path to GRO file from Gromacs with metadata. 
-    --top: Path to TOP file from Gromacs with metadata.
+    --tpr: Path to TPR file from GROMACS with metadata. (Obligatory argument)
+    --gro: Path to GRO file from GROMACS with metadata. 
+    --top: Path to TOP file from GROMACS with metadata.
     --opt: Path to optional metadata for extending metadata.
-    --gmx_bin: Path to Gromacs binary used to parse the metadata. Default: /opt/gromacs/bin/gmx
+    --gmx_bin: Path to GROMACS binary used to parse the metadata. Default: /opt/gromacs/bin/gmx
     --archive: Path to archive with files. If provided, the script will process all files in the archive.
     --verbose: If true, verbose information is printed as script runs. Default: False
     --format: Print extracted metadata as `json` or `yaml` formats. Default: json
@@ -36,13 +34,13 @@ def load_argumets():
         parser = argparse.ArgumentParser()
         parser.add_argument('--tpr',
                             type=str,
-                            help='Tpr file from gromacs with metadata. (Obligatory argument)')
+                            help='Tpr file from GROMACS with metadata. (Obligatory argument)')
         parser.add_argument('--gro',
                             type=str,
-                            help='Gro file from gromacs with metadata.')
+                            help='Gro file from GROMACS with metadata.')
         parser.add_argument('--top',
                             type=str,
-                            help='Cpt file from gromacs with metadata.',
+                            help='Cpt file from GROMACS with metadata.',
                             default=None)
         parser.add_argument('--opt',
                             type=str,
@@ -56,7 +54,7 @@ def load_argumets():
         parser.add_argument('--gmx_bin',
                             type=str,
                             default="/opt/gromacs/bin/gmx",
-                            help="Path to gromacs binary used to parse the metadata. Default: gmx")
+                            help="Path to GROMACS binary used to parse the metadata. Default: gmx")
         parser.add_argument('--archive',
                             type=str,
                             default=None,
