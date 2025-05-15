@@ -47,7 +47,7 @@ If `--archive` is specified, all other input files (`--tpr`, `--top`, `--gro`, a
 ## Trying it out in Docker
 If you want to try the GROMACS MetaDump software but don't want to install anything, you can use the ready-made Docker image.
 ```bash
-docker run --rm -v /path/to/simulation/files:/data:/data cerit.io/ceitec-biodata-pub/gromacs-metadump-worker:latest python3 gmxextract.py --tpr <path to TPR file>
+docker run --rm -v /path/to/simulation/files:/data:/data cerit.io/ceitec-biodata-pub/gromacs-metadump-worker python3 gmxextract.py --tpr <path to TPR file>
 ```
 
 ## Authors
