@@ -90,7 +90,7 @@ class GromacsMetadataExtractor:
 
         def build_gmx_dump_command(file_path):
             # "-section", "inputrec", "-section", "qm-opts", "-section", "grpopts", "-section", "header", "-section", "box", "-section", "box_rel", "-section", "boxv", "-section", "pres_prev", "-section", "svir_prev", "-section", "fvir_prev", "-section", "nosehoover_xi", "-section", "group_statistics"
-            command = [self.gmx_bin, "dump", "-s", file_path, "-format", self.format]
+            command = [self.gmx_bin, "dump", "-s", file_path, "-format", "json"]
             for section in self.gmx_dump_options:
                 command.append(f'-section')
                 command.append(section)

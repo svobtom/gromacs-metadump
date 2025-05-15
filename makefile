@@ -39,6 +39,7 @@
 #   You can override the default VERSION and REPO values by passing them as arguments:
 #
 #       make VERSION=1.0 REPO=yourrepo
+#		make worker VERSION=v2.3
 #
 # End of Documentation
 # Version tag and repository can be overridden from the command line.
@@ -57,7 +58,7 @@ $(CONTAINERS):
 	docker build -t $(REPO)/$(CONT_PREFIX)$@:$(VERSION) -f Dockerfile.$@ .
 
 # Push routine: pushes all containers after building.
-push: all
+push $(CONTAINERS): all
 	@for container in $(CONTAINERS); do \
 	  echo "Pushing $(CONT_PREFIX)$$container:$(VERSION)"; \
 	  docker push $(REPO)/$(CONT_PREFIX)$$container:$(VERSION); \
