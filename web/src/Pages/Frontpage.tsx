@@ -145,10 +145,10 @@ const Frontpage = () => {
             <Stack direction="column" spacing={5}>
                 <Typography>
                     This tool is designed to help you create FAIR metadata annotations to a biomolecular simulation dataset for publishing it to data repositories and citing the dataset in your paper.
-                    Currently, the tool works for Gromacs TPR file as an entry to the editor, as from TPR file we are ale to obtain most of the information. After uploading your TPR and quick analysis of your TPR file, a metadata editor will be displayed where you can validate and edit the metadata and finally download it in JSON or YAML format.
+                    Currently, the tool works for GROMACS TPR file as an entry to the editor, as from TPR file we are ale to obtain most of the information. After uploading your TPR and quick analysis of your TPR file, a metadata editor will be displayed where you can validate and edit the metadata and finally download it in JSON or YAML format.
                 </Typography>
                 <Stack direction="row" spacing={2} alignItems={"center"}>
-                    <Typography variant="h1">Annotate Gromacs Files</Typography>
+                    <Typography variant="h1">Annotate GROMACS Files</Typography>
                     <Tooltip title="Manual">
                         <Button href="https://github.com/sb-ncbr/gromacs-metadata-extractor/wiki" size="small" variant="outlined" target="_blank">
                             Manual
