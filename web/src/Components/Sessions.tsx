@@ -32,7 +32,7 @@ const Sessions = () => {
     if (requestIds.length > 0){
         return (
             <>
-                <Typography variant="h1" sx={{mb: 0}}>Sessions</Typography>
+                <Typography variant="h1" sx={{mb: 0}}>Previous sessions</Typography>
                 <Table sx={{ width: {xs: "100%", sm: "100%", md: "100%", lg: "70%", xl: "50%"}, mt: 0 }} size="small">
                     <TableHead>
                         <TableRow>
