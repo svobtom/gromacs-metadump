@@ -14,8 +14,8 @@ See the `cli` folder of this repository.
 See the [manual](https://github.com/sb-ncbr/gromacs-metadump/wiki/manual).
 
 ## Authors
-Adrián Rošinec - adrian@ics.muni.cz
-Ondřej Schindler - ondrej.schindler@mail.muni.cz
+- Adrián Rošinec - adrian@ics.muni.cz
+- Ondřej Schindler - ondrej.schindler@mail.muni.cz
 
 ## License
 BSD 3-Clause License, see LICENSE file
