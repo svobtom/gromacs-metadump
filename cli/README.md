@@ -1,36 +1,35 @@
-# Gromacs MetaDump CLI
+# GROMACS MetaDump CLI
 
 This is the CLI utility that extracts the metadata from the molecular dynamics simulations produced by the GROMACS software.
 
-This functionality is also available as web application at https://gmd.ceitec.cz/, where it is possible to obtain metadata after uploading a TPR file without need to install or run local any scripts.
+This functionality is also available as web application at https://gmd.ceitec.cz, where it is possible to obtain metadata after uploading a TPR file without need to install or run local any scripts.
 
 ## Dependencies
 
-- Gromacs software with extended `dump` utility (gmx dump) [which you may get here.](https://github.com/rrandiak/gromacs)
-- Python 3.8 and greater
+- GROMACS software with extended dump utility (`gmx dump`) [which you may get here](https://github.com/rrandiak/gromacs).
+- Python 3.8 or greater
 
 ## Usage
 
-How to use the `Gromacs MetaDump` software.
+How to use the `GROMACS MetaDump` software.
 
 ### Basic usage from CLI
 
 ```bash
-pytohn3 gmxextract.py --tpr <path to TPR file>
+python3 gmxextract.py --tpr <path to TPR file>
 ```
 
 ### Specify other input files, format and GROMACS binary
 ```bash
-pytohn3 gmxextract.py --tpr /data/run.tpr --gro /data/run.gro --top /data/topol.top --opt /data/optional.json --gmx_bin /opt/gromacs2023/bin/gmx --format json
+python3 gmxextract.py --tpr /data/run.tpr --gro /data/run.gro --top /data/topol.top --opt /data/optional.json --gmx_bin /opt/gromacs2023/bin/gmx --format json
 ```
 
 ### Specify archive as input file, format and GROMACS binary
 ```bash
-pytohn3 gmxextract.py --archive /data/archive.zip --gmx_bin /opt/gromacs2023/bin/gmx --format json
+python3 gmxextract.py --archive /data/archive.zip --gmx_bin /opt/gromacs2023/bin/gmx --format json
 ```
 
-
-#### Available Arguments
+#### Available arguments
 
 | Argument      | Description                              | Example                          |
 |---------------|------------------------------------------|----------------------------------|
@@ -45,13 +44,12 @@ pytohn3 gmxextract.py --archive /data/archive.zip --gmx_bin /opt/gromacs2023/bin
 
 If `--archive` is speficied, all other input files ()`--tpr`, `--top`, `--gro`, and `--opt`) will be ignored.
 
-# Authors
-Adrián Rošinec - adrian@muni.cz    
+## Authors
+Adrián Rošinec - adrian@muni.cz
 Ondřej Schindler - ondrej.schindler@mail.muni.cz
 
-# License
+## License
+BSD 3-Clause License, see LICENSE file
 
-BSD 3-Clause License, see LICESNE file
-
-Copyright (c) 2023, CEITEC and CERIT-SC, Masaryk University.
+Copyright (c) 2025, Masaryk University.
 All rights reserved.
