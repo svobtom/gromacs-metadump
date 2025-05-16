@@ -63,7 +63,7 @@ const Dropzone = ({ setUploadedFiles, setUploaded }: DropzoneProps) => {    cons
                                 </Grid>
                             </Grid>
                             {/* or archives *.zip or *.tar(.gz) */}
-                            <Typography variant="subtitle1"><em>(Only [*.tpr *.gro and *.top and *.json *yaml or archives containing those files *.zip and *.tar(.gz)] are accepted)</em></Typography>
+                            <Typography variant="subtitle1"><em>(Only [*.tpr, *.gro, *.top, *.json, and *.yaml] or archives containing those files [*.zip and *.tar(.gz)] are accepted.)</em></Typography>
                         </div>
                     </Paper>
                 </Stack>

@@ -14,10 +14,10 @@ const Footer = () => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={9} lg={10} xl={10}>
                     <Box>
-                        <Link href="/" variant="body1" underline="none" sx={{mb: 1, fontWeight: "bold", color: "inherit", display: "inline"}}>Gromacs <span style={{color: "rgb(244, 125, 32)"}}>Meta</span>Dump</Link>
+                        <Link href="/" variant="body1" underline="none" sx={{mb: 1, fontWeight: "bold", color: "inherit", display: "inline"}}>GROMACS <span style={{color: "rgb(244, 125, 32)"}}>Meta</span>Dump</Link>
                         <Typography variant="body2" sx={{display: "inline", fontWeight: "bold"}}>
                         &nbsp; tool is a part of services provided by ELIXIR – European research infrastructure for biological information.
-                        For other services provided by ELIXIR's Czech Republic Node visit <Link href="https://elixir-czech.cz/services">elixir-czech.cz/services</Link>.
+                        For other services provided by ELIXIR's Czech Republic Node visit <Link href="https://www.elixir-czech.cz/services">elixir-czech.cz/services</Link>.
                         </Typography>
                         <Divider sx={{ mt: 1, mb: 1 }} />
                         <Typography variant="body2" sx={{color: "#767676"}}>

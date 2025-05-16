@@ -11,7 +11,7 @@ This functionality is also available as web application at https://gmd.ceitec.cz
 
 ## Usage
 
-How to use the `GROMACS MetaDump` software.
+How to use the GROMACS MetaDump software.
 
 ### Basic usage from CLI
 
@@ -42,11 +42,17 @@ python3 gmxextract.py --archive /data/archive.zip --gmx_bin /opt/gromacs2023/bin
 |   --format    |   Format of output metadata <json/yaml>  |  --format json                   |
 |   --verbose     |    Print verbose information <switch>  |  --verbose                    |
 
-If `--archive` is speficied, all other input files ()`--tpr`, `--top`, `--gro`, and `--opt`) will be ignored.
+If `--archive` is specified, all other input files (`--tpr`, `--top`, `--gro`, and `--opt`) will be ignored.
+
+## Trying it out in Docker
+If you want to try the GROMACS MetaDump software but don't want to install anything, you can use the ready-made Docker image.
+```bash
+docker run --rm -v /path/to/simulation/files:/data:/data cerit.io/ceitec-biodata-pub/gromacs-metadump-worker python3 gmxextract.py --tpr <path to TPR file>
+```
 
 ## Authors
-Adrián Rošinec - adrian@muni.cz
-Ondřej Schindler - ondrej.schindler@mail.muni.cz
+- Adrián Rošinec - adrian@muni.cz
+- Ondřej Schindler - ondrej.schindler@mail.muni.cz
 
 ## License
 BSD 3-Clause License, see LICENSE file
