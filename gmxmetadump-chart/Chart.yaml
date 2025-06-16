@@ -1,6 +1,6 @@
 apiVersion: v2
 name: gmx-metadump
-description: GROMACS Metadata-Dump API & Worker
+description: GROMACS MetaDump API & Worker
 type: application
 version: 0.1.0
 appVersion: "latest"
