@@ -16,7 +16,7 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 
 # Clone GROMACS repository (this layer will be cached unless the repo changes)
-RUN git clone -b devel https://github.com/rrandiak/gromacs.git /gromacs
+RUN git clone -b freeze/v2025.1 https://github.com/rrandiak/gromacs.git /gromacs
 
 # Build GROMACS (this layer will be cached unless the source code changes)
 WORKDIR /gromacs
