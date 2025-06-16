@@ -1,5 +1,5 @@
 """
-Description: This script extracts metadata from GROMACS TPR files acording to the schema
+Description: This script extracts metadata from GROMACS TPR files according to the schema
 Author: Adrian Rosinec, and Ondrej Schindler
 Maintainer: Adrian Rosinec
 Email: adrian@ics.muni.cz
