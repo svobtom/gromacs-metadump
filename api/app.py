@@ -314,5 +314,5 @@ def get_results(uuid):
     return jsonify(json.loads(job.result_metadata))
 
 if __name__ == "__main__":
-    logger.info("Starting Gromacs MetaDump API...")
+    logger.info("Starting GROMACS MetaDump API...")
     app.run(host="0.0.0.0", port=5000)

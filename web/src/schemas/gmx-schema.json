@@ -446,8 +446,8 @@
             "type": "string"
         },
         "_gromacs_version": {
-            "title": "Gromacs software version",
-            "description": "Version of Gromacs (dump) used to extract metadata",
+            "title": "GROMACS software version",
+            "description": "Version of GROMACS (dump) used to extract metadata",
             "type": "string",
             "pattern": "^\\d+(\\.\\d+)*$"
         },

@@ -1,11 +1,11 @@
 """
-Description: This script extracts metadata from Gromacs TPR files acording to the schema
+Description: This script extracts metadata from GROMACS TPR files acording to the schema
 Author: Adrian Rosinec, and Ondrej Sindler
 Maintainer: Adrian Rosinec
 Email: adrian@ics.muni.cz
 Date Created: February 13, 2023
 Date Modified: January 1, 2024
-Dependencies: Python 3.8+, Gromacs 2020.4+
+Dependencies: Python 3.8+, GROMACS 2020.4+
 Version: 0.1
 Python Version: 3.8+
 License: BSD 3-Clause License
@@ -28,13 +28,13 @@ import re
 import subprocess
 
 """
-Metadata extractor class for Gromacs tpr files.
+Metadata extractor class for GROMACS TPR files.
 Usage:
     MetadataExtractor(tpr_file[, gro_file[, cpt_file[, debug]]]) -> MetadataExtractor
 params:
-    tpr_file: path to the tpr file (required)
-    gro_file: path to the gro file
-    cpt_file: path to the cpt file
+    tpr_file: path to the TPR file (required)
+    gro_file: path to the GRO file
+    cpt_file: path to the CPT file
     debug: if true, debug information is printed as script runs
 """
 
