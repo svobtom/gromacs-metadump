@@ -120,7 +120,7 @@ const AnnotationResults = () => {
                                     <Typography variant="h1">Annotation results</Typography>
                                     <Typography>Session ID: {session}</Typography>
                                     <Typography>Job status: <SessionStatus>{statedata?.status || ""}</SessionStatus></Typography>
-                                    <Typography>Session Expiration: {statedata?.expires}</Typography>
+                                    <Typography>Session Expiration: {(new Date(statedata?.expires)).toLocaleString()}</Typography>
                                 </Stack>
                                 {loading || error ? (
                                     skeleton
