@@ -12,6 +12,7 @@ from flask_sqlalchemy import SQLAlchemy
 from celery import Celery
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
+import functools
 
 from cli.GromacsMetadataExtractor import GromacsMetadataExtractor, METADATA_STRUCTURE
 import secrets
@@ -97,6 +98,8 @@ def _upload_dir(job_id):
     path = os.path.join(DATA_FOLDER, job_id, "uploads")
     os.makedirs(path, exist_ok=True)
     return path
+
+url_for = functools.partial(url_for, _scheme=PREFERRED_URL_SCHEME, _external=True)
 
 # mapping file extensions → GromacsMetadataExtractor methods
 FILE_HANDLERS = {
