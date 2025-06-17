@@ -10,6 +10,8 @@ services:
       context: .
       dockerfile: Dockerfile.api
     image: cerit.io/ceitec-biodata-pub/gromacs-metadump-api:latest
+    restart: unless-stopped
+    user: "0:0"
     environment:
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
@@ -22,16 +24,17 @@ services:
       - "5000:5000"
     volumes:
       - annotation_data:/app/data
-      - database_data:/app/db
     depends_on:
       - redis
       - postgres
+      - worker
 
   worker:
     build:
       context: .
       dockerfile: Dockerfile.worker
     image: cerit.io/ceitec-biodata-pub/gromacs-metadump-worker:latest
+    restart: unless-stopped
     environment:
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
@@ -42,10 +45,8 @@ services:
       - DATABASE_URI=postgresql://postgres:postgres@postgres:5432/gmxmetadump
     volumes:
       - annotation_data:/app/data
-      - database_data:/app/db
     depends_on:
       - redis
-      - api
       - postgres
 
   postgres:
@@ -59,22 +60,14 @@ services:
       - database_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+
   adminer:
-    image: adminer:4.8.1
+    image: adminer:5.3.0
     restart: unless-stopped
-    volumes:
-      - database_data:/var/data/
     ports:
       - "8080:8080"
     environment:
       - ADMINER_DEFAULT_SERVER=postgres
-      - ADMINER_USER=postgres
-      - ADMINER_PASSWORD=postgres
-      - ADMINER_DB=gmxmetadump
-      - ADMINER_PORT=5432
-      - ADMINER_HOST=postgres
-      - ADMINER_USERNAME=postgres
-      - ADMINER_DATABASE=gmxmetadump
     depends_on:
       - postgres
 
