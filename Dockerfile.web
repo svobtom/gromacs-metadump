@@ -1,13 +1,11 @@
+# Build stage
+FROM node:24 AS builder
+WORKDIR /usr/src/app
+COPY web/ .
+RUN npm install --force
+RUN npm run build
 
-# # Build stage
-# FROM node AS builder
-# WORKDIR /usr/src/app
-# COPY . .
-# RUN npm install --force
-# RUN npm run build
-
-FROM nginxinc/nginx-unprivileged
-# COPY --from=builder /usr/src/app/build /var/www/app
-COPY ./web/build /var/www/app
+FROM nginxinc/nginx-unprivileged:1.27
+COPY --from=builder /usr/src/app/build /var/www/app
 COPY ./web/*.conf /etc/nginx/conf.d
 EXPOSE 8081
