@@ -7,15 +7,15 @@ replicaCount:
 image:
   api:
     repository: cerit.io/ceitec-biodata-pub/gromacs-metadump-api
-    tag:        v2.0
+    tag:        v2.4.1
     pullPolicy: IfNotPresent
   worker:
     repository: cerit.io/ceitec-biodata-pub/gromacs-metadump-worker
-    tag:        v2.0
+    tag:        v2.4.1
     pullPolicy: IfNotPresent
   web:
     repository: cerit.io/ceitec-biodata-pub/gromacs-metadump-web
-    tag:        v2.0
+    tag:        v2.4.1
     pullPolicy: IfNotPresent
   redis:
     repository: redis
@@ -68,6 +68,7 @@ dataFolder: /app/data
 cleanupDays: 30
 preferredUrlScheme: https
 timezone: Europe/Prague
+servername: gmd.ceitec.cz
 
 storage:
   annotationData:
