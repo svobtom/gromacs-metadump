@@ -24,7 +24,12 @@ services:
       - "5000:5000"
     volumes:
       - annotation_data:/app/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.rule=Host(`localhost`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.api.entrypoints=web"
     depends_on:
+      - traefik
       - redis
       - postgres
       - worker
@@ -49,6 +54,34 @@ services:
       - redis
       - postgres
 
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    image: cerit.io/ceitec-biodata-pub/gromacs-metadump-web:latest
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    depends_on:
+      - traefik
+      - api
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.web.rule=Host(`localhost`)"
+      - "traefik.http.routers.web.entrypoints=web"
+
+  traefik:
+    image: traefik:v2.10
+    restart: unless-stopped
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
   postgres:
     image: postgres:15-alpine
     restart: unless-stopped
@@ -68,6 +101,10 @@ services:
       - "8080:8080"
     environment:
       - ADMINER_DEFAULT_SERVER=postgres
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`localhost`) && PathPrefix(`/adminer`)"
+      - "traefik.http.routers.traefik.entrypoints=web"
     depends_on:
       - postgres
 
