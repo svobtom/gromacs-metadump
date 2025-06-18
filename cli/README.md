@@ -6,7 +6,7 @@ This functionality is also available as web application at https://gmd.ceitec.cz
 
 ## Dependencies
 
-- GROMACS software with extended dump utility (`gmx dump`) [which you may get here](https://github.com/rrandiak/gromacs).
+- GROMACS software with extended dump utility (`gmx dump`) is required. It has to be built from source code using `freeze/v2025.1` branch available in the repository https://github.com/sb-ncbr/gromacs.git.
 - Python 3.8 or greater
 
 ## Usage
@@ -46,6 +46,7 @@ If `--archive` is specified, all other input files (`--tpr`, `--top`, `--gro`, a
 
 ## Trying it out in Docker
 If you want to try the GROMACS MetaDump software but don't want to install anything, you can use the ready-made Docker image.
+
 ```bash
 docker run --rm -v /path/to/simulation/files:/data:/data cerit.io/ceitec-biodata-pub/gromacs-metadump-worker python3 gmxextract.py --tpr <path to TPR file>
 ```

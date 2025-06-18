@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Gromacs Molecular Dynamics Metadata Schema",
+    "title": "GROMACS Molecular Dynamics Metadata Schema",
     "type": "object",
     "properties": {
       "dataset_metadata": {

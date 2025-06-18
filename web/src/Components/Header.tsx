@@ -13,7 +13,7 @@ const Header = () => {
                 <Stack direction={'column'} spacing={1} sx={{flexGrow: 1}}>
                     <Stack direction="row" alignItems="center" onClick={() => navigate("/")} sx={{color: "inherit", cursor: "pointer"}}>
                         <img src={logo} alt="logo" style={{marginRight: "0.5em", width: "3em", height: "3em"}}/>
-                        <Typography variant="h1">Gromacs <span style={{color: "rgb(244, 125, 32)"}}>Meta</span>Dump</Typography>
+                        <Typography variant="h1">GROMACS <span style={{color: "rgb(244, 125, 32)"}}>Meta</span>Dump</Typography>
                     </Stack>
                     <Typography variant="h3" sx={{mt: "0.5em"}}>A tool to describe molecular dynamics simulations with powerful metadata</Typography>
                 </Stack>
