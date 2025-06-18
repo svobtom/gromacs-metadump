@@ -40,6 +40,8 @@ spec:
               value: "{{ .Values.cleanupDays }}"
             - name: PREFERRED_URL_SCHEME
               value: "{{ .Values.preferredUrlScheme }}"
+            - name: SERVER_NAME
+              value: "{{ .Values.servername }}"
             - name: TZ
               value: "{{ .Values.timezone }}"
           resources:
