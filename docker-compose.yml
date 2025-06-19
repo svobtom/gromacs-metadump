@@ -1,9 +1,8 @@
+## GROMACS MetaDump
+# 
+# This docker-compose file deploy a local instance of GROMACS MetaDump. Its purpose is development and testing purposes.
+#
 services:
-  redis:
-    image: redis:6-alpine
-    restart: unless-stopped
-    ports:
-      - "6379:6379"
 
   api:
     build:
@@ -81,6 +80,12 @@ services:
       - "80:80"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
+  redis:
+    image: redis:6-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
 
   postgres:
     image: postgres:15-alpine
